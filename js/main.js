@@ -3,8 +3,8 @@
 let array = [];
 var DATA = (function () {
     topStories();
-    bestStories();
-    newStories();
+    // bestStories();
+    // newStories();
     function topStories() {
         fetch(`https://hacker-news.firebaseio.com/v0/topstories.json`)
             .then(function (response) {
