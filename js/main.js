@@ -1,23 +1,26 @@
 "use strict";
 
-let array = [];
+let topStories = [];
+let bestStories = [];
+let newStories = [];
+let arrayStoreData = [];
 var DATA = (function () {
 
     function topStories(load) {
 
         let loader = `<div><h2>Please Wait while Data is Loading</h2></div>`;
         document.getElementById('wrap').innerHTML = loader;
+
         fetch(`https://hacker-news.firebaseio.com/v0/topstories.json`)
             .then(function (response) {
                 return response.json();
             })
             .then(function (myJson) {
 
-                array = myJson;
+                topStories = myJson;
 
                 for (let i = 0; i <= load; i++) {
-                    _getData(array[i]);
-                   
+                    _getData(topStories[i]);
                 }
                 let dloader = ``;
                 document.getElementById('wrap').innerHTML = dloader;
@@ -28,7 +31,7 @@ var DATA = (function () {
         let loader = `<div><h2>Please Wait while Data is Loading</h2></div>`;
         document.getElementById('wrap').innerHTML = loader;
         let load = 5;
-        let bestStories = []
+
         fetch(`https://hacker-news.firebaseio.com/v0/beststories.json`)
             .then(function (response) {
                 return response.json();
@@ -37,7 +40,6 @@ var DATA = (function () {
                 bestStories = myJson;
                 for (let i = 0; i <= load; i++) {
                     _getData(bestStories[i]);
-                   
                 }
                 let dloader = ``;
                 document.getElementById('wrap').innerHTML = dloader;
@@ -47,22 +49,24 @@ var DATA = (function () {
     function newStories() {
         let loader = `<div><h2>Please Wait while Data is Loading</h2></div>`;
         document.getElementById('wrap').innerHTML = loader;
+
         let load = 5;
-        let newStories
+
         fetch(`https://hacker-news.firebaseio.com/v0/beststories.json`).then(function (response) {
             return response.json();
         }).then(function (myJson) {
             newStories = myJson;
             for (let i = 0; i <= load; i++) {
                 _getData(newStories[i]);
-                
             }
             let dloader = ``;
-                document.getElementById('wrap').innerHTML = dloader;
+            document.getElementById('wrap').innerHTML = dloader;
         });
     }
     function _getData(id) {
 
+
+        arrayStoreData.push(id);
         fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
             .then(function (response) {
                 return response.json();
@@ -75,13 +79,9 @@ var DATA = (function () {
             });
     }
     function printdata(myJson) {
-
-
-
         var table = document.createElement('table');
         var tr = document.createElement('tr');
         var td = document.createElement('td');
-        var t = document.createElement('ol');
         var by = document.createElement('li');
         var descendants = document.createElement('li');
         var id = document.createElement('li');
@@ -91,15 +91,13 @@ var DATA = (function () {
         var time = document.createElement('li');
         var type = document.createElement('li');
         var url = document.createElement('li');
-
-
-
+    
         table.id = "table";
         title.innerHTML = `title:${myJson.title}`
         by.innerHTML = ` by: ${myJson.by}`;
         descendants.innerHTML = ` descendants: ${myJson.by}`;
         id.innerHTML = ` id: ${myJson.id}`;
-        kids.innerHTML = ` kids: ${myJson.kids}`;
+        kids.innerHTML = ` kids: ${myJson.kids[1]}`;
         kids.style.overflow = 'hidden';
         score.innerHTML = ` score: ${myJson.score}`;
         time.innerHTML = ` time: ${myJson.time}`;

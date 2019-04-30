@@ -1,3 +1,7 @@
+#box-container {
+    display: flex;
+}
+
 a:link, a:visited {
     background-color: #f44336;
     color: white;
@@ -5,17 +9,18 @@ a:link, a:visited {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-  }
-  
-  a:hover, a:active {
+}
+
+a:hover, a:active {
     background-color: red;
-  }
+}
 
 #table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    overflow: hidden;
+    /* overflow: scroll; */
+    table-layout: fixed;
 }
 
 #table td, #customers th {
@@ -27,6 +32,10 @@ a:link, a:visited {
 
 #table tr:nth-child(odd) {
     background-color: #f2f2f2;
+}
+
+#table li {
+    width: auto;
 }
 
 #table tr:hover {
