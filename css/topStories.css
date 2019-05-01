@@ -1,12 +1,25 @@
+/* list Styling start */
+
+ol {
+    background: #ff9999;
+    padding: 20px;
+}
+
+ol li {
+    background: #ffe5e5;
+    padding: 5px;
+    margin-left: 35px;
+}
+
+/* list styling end */
+
 /* scroll start */
 
 /* width */
 
-
 #scrollable::-webkit-scrollbar {
     width: auto;
     height: 8px;
-    
 }
 
 /* Track */
@@ -48,6 +61,7 @@ a:hover, a:active {
 }
 
 #table {
+    margin: 5px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -55,7 +69,7 @@ a:hover, a:active {
 }
 
 #table td, #customers th {
-    border: 1px solid #ddd;
+    border: 5px solid #ddd;
     padding: 8px;
     width: 100%;
 }
@@ -69,8 +83,9 @@ a:hover, a:active {
 }
 
 #scrollable {
-    overflow-x: scroll; 
+    overflow-x: scroll;
 }
+
 /* 
 #table td:hover {
     background-color: #ddd;
