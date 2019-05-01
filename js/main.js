@@ -4,7 +4,7 @@ let topStories = [];
 let bestStories = [];
 let newStories = [];
 let arrayStoreData = [];
-var DATA = (function () {
+let DATA = (function () {
 
     function topStories(load) {
 
@@ -79,30 +79,46 @@ var DATA = (function () {
             });
     }
     function printdata(myJson) {
-        var table = document.createElement('table');
-        var tr = document.createElement('tr');
-        var td = document.createElement('td');
-        var by = document.createElement('li');
-        var descendants = document.createElement('li');
-        var id = document.createElement('li');
-        var title = document.createElement('li');
-        var kids = document.createElement('li');
-        var score = document.createElement('li');
-        var time = document.createElement('li');
-        var type = document.createElement('li');
-        var url = document.createElement('li');
+        /**<table>
+     * <tr>
+        <td>
+            <ol>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+                <li>d</li>
+            </ol>
+        </td>
+    </tr>
+    </table> */
+        let table = document.createElement('table');
+        let tr = document.createElement('tr');
+        let td = document.createElement('td');
+        let ol=document.createElement('ol');
+        let by = document.createElement('li');
+        let descendants = document.createElement('li');
+        let id = document.createElement('li');
+        let title = document.createElement('li');
+        let kids = document.createElement('li');
+        let score = document.createElement('li');
+        let time = document.createElement('li');
+        let type = document.createElement('li');
+        let url = document.createElement('li');
     
+
+        
         table.id = "table";
         title.innerHTML = `title:${myJson.title}`
         by.innerHTML = ` by: ${myJson.by}`;
         descendants.innerHTML = ` descendants: ${myJson.by}`;
         id.innerHTML = ` id: ${myJson.id}`;
-        kids.innerHTML = ` kids: ${myJson.kids[1]}`;
-        kids.style.overflow = 'hidden';
+        kids.innerHTML = ` kids: ${myJson.kids}`;
         score.innerHTML = ` score: ${myJson.score}`;
         time.innerHTML = ` time: ${myJson.time}`;
         type.innerHTML = ` type: ${myJson.type}`;
         url.innerHTML = ` url: ${myJson.url}`;
+        kids.id="scrollable";
+        url.id="scrollable";
 
 
         tr.appendChild(td);

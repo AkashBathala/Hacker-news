@@ -1,8 +1,40 @@
+/* scroll start */
+
+/* width */
+
+
+#scrollable::-webkit-scrollbar {
+    width: auto;
+    height: 8px;
+    
+}
+
+/* Track */
+
+#scrollable::-webkit-scrollbar-track {
+    background: #f2f2f2;
+}
+
+/* Handle */
+
+#scrollable::-webkit-scrollbar-thumb {
+    background: #ddd;
+}
+
+/* Handle on hover */
+
+#scrollable::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* scroll end */
+
 #box-container {
     display: flex;
 }
 
 a:link, a:visited {
+    margin: 5px;
     background-color: #f44336;
     color: white;
     padding: 14px 25px;
@@ -19,7 +51,6 @@ a:hover, a:active {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    /* overflow: scroll; */
     table-layout: fixed;
 }
 
@@ -27,7 +58,6 @@ a:hover, a:active {
     border: 1px solid #ddd;
     padding: 8px;
     width: 100%;
-    overflow: hidden;
 }
 
 #table tr:nth-child(odd) {
@@ -38,9 +68,13 @@ a:hover, a:active {
     width: auto;
 }
 
-#table tr:hover {
-    background-color: #ddd;
+#scrollable {
+    overflow-x: scroll; 
 }
+/* 
+#table td:hover {
+    background-color: #ddd;
+} */
 
 #table th {
     text-align: left;
