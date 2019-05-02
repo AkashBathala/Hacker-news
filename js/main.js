@@ -1,18 +1,16 @@
 "use strict";
 let words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
 let topStoriesarray = [];
-let bestStories = [];
-let newStories = [];
+let bestStoriesarray = [];
+let newStoriesarray = [];
 let arrayStoreData = [];
 
 
 let DATA = (function () {
 
     function topStories() {
-
         let loader = `<div><h2>Please Wait while Data is Loading</h2></div>`;
         document.getElementById('wrap').innerHTML = loader;
-
         fetch(`https://hacker-news.firebaseio.com/v0/topstories.json`)
             .then(function (response) {
                 return response.json();
@@ -21,18 +19,15 @@ let DATA = (function () {
 
                 myJson.forEach(d => topStoriesarray.push(d));
                 console.log(topStoriesarray);
-
                 for (let i = 0; i < 10; i++) {
-
                     _getData(topStoriesarray[i]);
                     console.log("in top stories", topStoriesarray[i]);
-
                 }
                 let dloader = ``;
                 let button = document.createElement('button');
                 button.innerHTML = "Load More";
                 document.getElementById('button').appendChild(button);
-                button.onclick = yhendler;
+                button.onclick = topStoryhendler;
                 document.getElementById('wrap').innerHTML = dloader;
             });
     }
@@ -40,38 +35,45 @@ let DATA = (function () {
     function bestStories() {
         let loader = `<div><h2>Please Wait while Data is Loading</h2></div>`;
         document.getElementById('wrap').innerHTML = loader;
-        let load = 5;
+
 
         fetch(`https://hacker-news.firebaseio.com/v0/beststories.json`)
             .then(function (response) {
                 return response.json();
             })
             .then(function (myJson) {
-                bestStories = myJson;
-                arrayStoreData = bestStories;
-                for (let i = 0; i <= load; i++) {
-                    _getData(bestStories[i]);
+                myJson.forEach(d => bestStoriesarray.push(d));
+                console.log(bestStoriesarray);
+                for (let i = 0; i < 10; i++) {
+                    _getData(bestStoriesarray[i]);
+                    console.log("in top stories", bestStoriesarray[i]);
                 }
                 let dloader = ``;
+                let button = document.createElement('button');
+                button.innerHTML = "Load More";
+                document.getElementById('button').appendChild(button);
+                button.onclick = bestStoryhendler;
                 document.getElementById('wrap').innerHTML = dloader;
-
             });
     }
     function newStories() {
         let loader = `<div><h2>Please Wait while Data is Loading</h2></div>`;
         document.getElementById('wrap').innerHTML = loader;
-
-        let load = 5;
-
         fetch(`https://hacker-news.firebaseio.com/v0/beststories.json`).then(function (response) {
             return response.json();
         }).then(function (myJson) {
-            newStories = myJson;
-            for (let i = 0; i <= load; i++) {
-                _getData(newStories[i]);
-            }
-            let dloader = ``;
-            document.getElementById('wrap').innerHTML = dloader;
+            myJson.forEach(d => newStoriesarray.push(d));
+                console.log(newStoriesarray);
+                for (let i = 0; i < 10; i++) {
+                    _getData(newStoriesarray[i]);
+                    console.log("in top stories", newStoriesarray[i]);
+                }
+                let dloader = ``;
+                let button = document.createElement('button');
+                button.innerHTML = "Load More";
+                document.getElementById('button').appendChild(button);
+                button.onclick = newStoryhendler;
+                document.getElementById('wrap').innerHTML = dloader;
         });
     }
     async function _getData(id) {
@@ -87,19 +89,29 @@ let DATA = (function () {
                 printdata(singaldata);
                 console.log("avfter fetch in get data", id);
                 // console.log("in getdata",singaldata);
-
             });
     }
-    function dataPrintFormat(x, y) {
+    function topStoryPrinter(x, y) {
         for (let i = x; i < y; i++) {
             // console.log(topStoriesarray[i] ,"i is",i,y);
             _getData(topStoriesarray[i]);
         }
-
     }
+    function bestStoryPrinter(x, y) {
+        for (let i = x; i < y; i++) {
+            // console.log(topStoriesarray[i] ,"i is",i,y);
+            _getData(bestStoriesarray[i]);
+        }
+    }
+     function newStoryPrinter(x, y) {
+        for (let i = x; i < y; i++) {
+            // console.log(topStoriesarray[i] ,"i is",i,y);
+            _getData(newStoriesarray[i]);
+        }
+    } 
     async function printdata(myJson) {
-        /** <table>
-     * <tr>
+        /**<table>
+      <tr>
         <td>
             <ol>
                 <li>a</li>
@@ -109,7 +121,7 @@ let DATA = (function () {
             </ol>
         </td>
     </tr>
-    </table> */
+    </table>*/
         let table = document.createElement('table');
         let tr = document.createElement('tr');
         let td = document.createElement('td');
@@ -155,24 +167,51 @@ let DATA = (function () {
         newStories: newStories,
         bestStories: bestStories,
         topStories: topStories,
-        dataPrintFormat: dataPrintFormat
+        topStoryPrinter: topStoryPrinter,
+        bestStoryPrinter: bestStoryPrinter,
+        newStoryPrinter:newStoryPrinter
     }
 })();
 let starter = 10, round = 20;
-function yhendler() {
+function topStoryhendler() {
 
     let wrap = document.getElementById('bodyid');
     let contentheight = wrap.offsetHeight;  //gets page content height
     let yoffset = window.scrollY;  //gets the vertical scroll positio
     let y = yoffset + window.innerHeight;
-
     if (y >= contentheight) {
-        // document.getElementById('wrap').innerHTML += "<div>asdasdsd</div>";
-        DATA.dataPrintFormat(starter, round);
+        DATA.topStoryPrinter(starter, round);
         starter += 10;
         round += 10;
     }
-    var status = document.getElementById('status');
-    status.innerHTML = contentheight + "|" + y + "|" + window.pageYOffset + "|" + window.scrollY;
+    // var status = document.getElementById('status');
+    // status.innerHTML = contentheight + "|" + y + "|" + window.pageYOffset + "|" + window.scrollY;
 }
+function bestStoryhendler() {
 
+    let wrap = document.getElementById('bodyid');
+    let contentheight = wrap.offsetHeight;  //gets page content height
+    let yoffset = window.scrollY;  //gets the vertical scroll positio
+    let y = yoffset + window.innerHeight;
+    if (y >= contentheight) {
+        DATA.bestStoryPrinter(starter, round);
+        starter += 10;
+        round += 10;
+    }
+    
+    // var status = document.getElementById('status');
+    // status.innerHTML = contentheight + "|" + y + "|" + window.pageYOffset + "|" + window.scrollY;
+}
+function newStoryhendler() {
+
+    let wrap = document.getElementById('bodyid');
+    let contentheight = wrap.offsetHeight;  //gets page content height
+    let yoffset = window.scrollY;  //gets the vertical scroll positio
+    let y = yoffset + window.innerHeight;
+    if (y >= contentheight) {
+        DATA.newStoryPrinter(starter, round);
+        starter += 10;
+        round += 10;
+    }
+
+}
