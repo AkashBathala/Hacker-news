@@ -8,7 +8,7 @@
     grid-area: header2;
 }
 
-.kids {
+.votes {
     grid-area: kids;
 }
 
@@ -55,7 +55,7 @@ header {
     margin-left: 18px;
     margin-top: 10px;
     display: grid;
-    grid-template-areas: 'header2 header2 header1 header1' 'url url url url' 'descendants descendants descendants descendants ' 'kids kids kids kids' 'footer  footer footer  footer';
+    grid-template-areas: 'header2 header1 descendants kids' 'footer footer  footer footer';
 }
 
 /* list Styling start */
@@ -124,20 +124,13 @@ span {
 }
 
 #table {
-    margin: 5px;
+    margin-bottom: 10px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
     table-layout: fixed;
+    background: beige;
 }
-
-
-#table, #customers th {
-    border: 5px solid #ddd;
-    padding: 8px;
-    width: 100%;
-}
-
 /* #table tr:nth-child(odd) {
     background-color: #f2f2f2;
 } */

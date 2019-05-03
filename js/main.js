@@ -87,6 +87,7 @@ let DATA = (function () {
             })
             .then(function (singaldata) {
                 printdata(singaldata);
+                
                 console.log("avfter fetch in get data", id);
                 // console.log("in getdata",singaldata);
             });
@@ -121,8 +122,8 @@ let DATA = (function () {
             </tr>
         </table>*/
         let table = document.createElement('table');
-        let icon=document.createElement('i');
-        let iconanchor=document.createElement('a');
+        let icon = document.createElement('i');
+        let iconanchor = document.createElement('a')
         let tr = document.createElement('tr');
         let tr2 = document.createElement('tr');
         let td = document.createElement('td');
@@ -131,55 +132,56 @@ let DATA = (function () {
         let descendants = document.createElement('span');
         let id = document.createElement('span');
         let title = document.createElement('span');
-        let kids = document.createElement('span');
+        let votes = document.createElement('span');
         let score = document.createElement('span');
         let time = document.createElement('span');
         let type = document.createElement('span');
         let url = document.createElement('span');
 
         table.id = "table";
-        icon.className =" fa fa-external-link";
+        icon.className = " fa fa-external-link";
         title.innerHTML = `${myJson.title}`
         by.innerHTML = ` By: ${myJson.by}`;
         descendants.innerHTML = `descendants: ${myJson.by}`;
         id.innerHTML = ` id: ${myJson.id}`;
-        kids.innerHTML = ` Other: ${myJson.kids}`;
+        votes.innerHTML = ` Votes: ${myJson.score}`;
         score.innerHTML = ` score: ${myJson.score}`;
         time.innerHTML = ` time: ${myJson.time}`;
         type.innerHTML = ` type: ${myJson.type}`;
         url.innerHTML = ` reference: <a  href="${myJson.url}">${myJson.url}</a>`;
 
-        id.id="id";
-        by.id="by";
-        tr.id='row';
-        descendants.id='descendants';
-        score.id="score";
-        kids.id = "scrollable";
-        kids.className="kids";
+        id.id = "id";
+        by.id = "by";
+        tr.id = 'row';
+        descendants.id = 'descendants';
+        score.id = "score";
+        votes.id = "scrollable";
+        votes.className = "votes";
         url.id = "scrollable";
-        url.className="url";
-        tr2.id="grid1";
-        div.id="grid";
-        time.id="time";
-        title.id="title";
-        icon.id="iconleft";
-        
-    
+        url.className = "url";
+        tr2.id = "grid1";
+        div.id = "grid";
+        time.id = "time";
+        title.id = "title";
+        icon.id = "iconleft";
+        iconanchor.href = myJson.url;
+        iconanchor.target = "_blank";
+
 
         tr2.appendChild(title);
-        tr2.appendChild(icon);
+        iconanchor.appendChild(icon)
+        tr2.appendChild(iconanchor);
         tr.appendChild(td);
         td.appendChild(div)
         div.appendChild(id);
         div.appendChild(descendants);
         div.appendChild(by);
-        div.appendChild(kids);
+        div.appendChild(votes);
         // div.appendChild(score);
         // div.appendChild(time);
-        div.appendChild(url);
+        // div.appendChild(url);
         table.appendChild(tr2);
         table.appendChild(tr);
-
         document.getElementById('wrap').appendChild(table)
     }
     return {
