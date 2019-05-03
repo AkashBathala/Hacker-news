@@ -1,15 +1,60 @@
-/* Style the header */
+/*Grid start */
 
-header  {
+#id {
+    grid-area: header1;
+}
+
+#by {
+    grid-area: header2;
+}
+
+.kids {
+    grid-area: kids;
+}
+
+.url {
+    grid-area: url;
+}
+
+#grid1 {
+    display: grid;
+    font-size: 20px;
+    grid-template-areas: 'title iconleft'
+}
+
+#iconleft {
+    float: right;
+    grid-area: iconleft;
+    
+}
+.fa-external-link:before {
+    float: right;
+    
+}
+
+#title {
+    grid-area: title;
+    margin-left: 10px;
+}
+
+/*Grid end */
+
+#descendants {
+    grid-area: descendants;
+}
+
+header {
     background-color: #666;
     text-align: center;
     font-size: 35px;
     color: white;
-
-    
 }
-h2{
-    margin: 0px;
+
+#grid {
+    margin-left: 18px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-areas: 'header2 header2 header1 header1' 'url url url url' 'descendants descendants descendants descendants ' 'kids kids kids kids' 'footer  footer footer  footer';
 }
 
 /* list Styling start */
@@ -19,10 +64,13 @@ ol {
     padding: 20px;
 }
 
-ol li {
+ul li {
     background: #ffe5e5;
     padding: 5px;
-    margin-left: 35px;
+}
+
+span {
+    display: flex;
 }
 
 /* list styling end */
@@ -38,9 +86,9 @@ ol li {
 
 /* Track */
 
-#scrollable::-webkit-scrollbar-track {
-    background: #f2f2f2;
-}
+/* #scrollable::-webkit-scrollbar-track {
+    background: #f2f2f2; 
+} */
 
 /* Handle */
 
@@ -60,7 +108,7 @@ ol li {
     display: flex;
 }
 
-a:link, a:visited {
+.a:link, .a:visited {
     margin: 5px;
     background-color: #f44336;
     color: white;
@@ -70,7 +118,7 @@ a:link, a:visited {
     display: inline-block;
 }
 
-a:hover, a:active {
+.a:hover, .a:active {
     background-color: red;
 }
 
@@ -82,15 +130,15 @@ a:hover, a:active {
     table-layout: fixed;
 }
 
-#table td, #customers th {
+#table, #customers th {
     border: 5px solid #ddd;
     padding: 8px;
     width: 100%;
 }
 
-#table tr:nth-child(odd) {
+/* #table tr:nth-child(odd) {
     background-color: #f2f2f2;
-}
+} */
 
 #table li {
     width: auto;
@@ -110,3 +158,8 @@ a:hover, a:active {
     background-color: darkgrey;
     color: white;
 }
+
+/* #row{
+    margin-left: 15px;
+    margin-top: 10px;
+} */

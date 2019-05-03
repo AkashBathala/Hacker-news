@@ -63,17 +63,17 @@ let DATA = (function () {
             return response.json();
         }).then(function (myJson) {
             myJson.forEach(d => newStoriesarray.push(d));
-                console.log(newStoriesarray);
-                for (let i = 0; i < 10; i++) {
-                    _getData(newStoriesarray[i]);
-                    console.log("in top stories", newStoriesarray[i]);
-                }
-                let dloader = ``;
-                let button = document.createElement('button');
-                button.innerHTML = "Load More";
-                document.getElementById('button').appendChild(button);
-                button.onclick = newStoryhendler;
-                document.getElementById('wrap').innerHTML = dloader;
+            console.log(newStoriesarray);
+            for (let i = 0; i < 10; i++) {
+                _getData(newStoriesarray[i]);
+                console.log("in top stories", newStoriesarray[i]);
+            }
+            let dloader = ``;
+            let button = document.createElement('button');
+            button.innerHTML = "Load More";
+            document.getElementById('button').appendChild(button);
+            button.onclick = newStoryhendler;
+            document.getElementById('wrap').innerHTML = dloader;
         });
     }
     async function _getData(id) {
@@ -103,64 +103,82 @@ let DATA = (function () {
             _getData(bestStoriesarray[i]);
         }
     }
-     function newStoryPrinter(x, y) {
+    function newStoryPrinter(x, y) {
         for (let i = x; i < y; i++) {
             // console.log(topStoriesarray[i] ,"i is",i,y);
             _getData(newStoriesarray[i]);
         }
-    } 
+    }
     async function printdata(myJson) {
         /**<table>
-      <tr>
-        <td>
-            <ol>
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
-                <li>d</li>
-            </ol>
-        </td>
-    </tr>
-    </table>*/
+            <tr>
+                <td>
+                        <span>a</span>
+                        <span>a</span>
+                        <span>a</span>
+                        <span>a</span>
+                </td>
+            </tr>
+        </table>*/
         let table = document.createElement('table');
+        let icon=document.createElement('i');
         let tr = document.createElement('tr');
+        let tr2 = document.createElement('tr');
         let td = document.createElement('td');
-        let ol = document.createElement('ol');
-        let by = document.createElement('li');
-        let descendants = document.createElement('li');
-        let id = document.createElement('li');
-        let title = document.createElement('li');
-        let kids = document.createElement('li');
-        let score = document.createElement('li');
-        let time = document.createElement('li');
-        let type = document.createElement('li');
-        let url = document.createElement('li');
+        let div = document.createElement('div');
+        let by = document.createElement('span');
+        let descendants = document.createElement('span');
+        let id = document.createElement('span');
+        let title = document.createElement('span');
+        let kids = document.createElement('span');
+        let score = document.createElement('span');
+        let time = document.createElement('span');
+        let type = document.createElement('span');
+        let url = document.createElement('span');
+        let column=document.createElement('span');
 
         table.id = "table";
-        title.innerHTML = `title:${myJson.title}`
-        by.innerHTML = ` by: ${myJson.by}`;
-        descendants.innerHTML = ` descendants: ${myJson.by}`;
+        icon.className =" fa fa-external-link";
+        title.innerHTML = `${myJson.title}`
+        by.innerHTML = ` By: ${myJson.by}`;
+        descendants.innerHTML = `descendants: ${myJson.by}`;
         id.innerHTML = ` id: ${myJson.id}`;
-        kids.innerHTML = ` kids: ${myJson.kids}`;
+        kids.innerHTML = ` Other: ${myJson.kids}`;
         score.innerHTML = ` score: ${myJson.score}`;
         time.innerHTML = ` time: ${myJson.time}`;
         type.innerHTML = ` type: ${myJson.type}`;
-        url.innerHTML = ` url: ${myJson.url}`;
+        url.innerHTML = ` reference: <a  href="${myJson.url}">${myJson.url}</a>`;
 
+        id.id="id";
+        by.id="by";
+        tr.id='row';
+        descendants.id='descendants';
+        score.id="score";
         kids.id = "scrollable";
+        kids.className="kids";
         url.id = "scrollable";
+        url.className="url";
+        tr2.id="grid1";
+        div.id="grid";
+        time.id="time";
+        title.id="title";
+        icon.id="iconleft";
+    
 
+        tr2.appendChild(title);
+        tr2.appendChild(icon);
         tr.appendChild(td);
-        td.appendChild(id);
-        td.appendChild(title);
-        td.appendChild(descendants);
-        td.appendChild(by);
-        td.appendChild(kids);
-        td.appendChild(score);
-        td.appendChild(time);
-        td.appendChild(type);
-        td.appendChild(url);
+        td.appendChild(div)
+        div.appendChild(id);
+        div.appendChild(descendants);
+        div.appendChild(by);
+        div.appendChild(kids);
+        // div.appendChild(score);
+        // div.appendChild(time);
+        div.appendChild(url);
+        table.appendChild(tr2);
         table.appendChild(tr);
+
         document.getElementById('wrap').appendChild(table)
     }
     return {
@@ -169,7 +187,7 @@ let DATA = (function () {
         topStories: topStories,
         topStoryPrinter: topStoryPrinter,
         bestStoryPrinter: bestStoryPrinter,
-        newStoryPrinter:newStoryPrinter
+        newStoryPrinter: newStoryPrinter
     }
 })();
 let starter = 10, round = 20;
@@ -198,7 +216,7 @@ function bestStoryhendler() {
         starter += 10;
         round += 10;
     }
-    
+
     // var status = document.getElementById('status');
     // status.innerHTML = contentheight + "|" + y + "|" + window.pageYOffset + "|" + window.scrollY;
 }
