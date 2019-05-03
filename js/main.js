@@ -122,6 +122,7 @@ let DATA = (function () {
         </table>*/
         let table = document.createElement('table');
         let icon=document.createElement('i');
+        let iconanchor=document.createElement('a');
         let tr = document.createElement('tr');
         let tr2 = document.createElement('tr');
         let td = document.createElement('td');
@@ -135,7 +136,6 @@ let DATA = (function () {
         let time = document.createElement('span');
         let type = document.createElement('span');
         let url = document.createElement('span');
-        let column=document.createElement('span');
 
         table.id = "table";
         icon.className =" fa fa-external-link";
@@ -163,6 +163,7 @@ let DATA = (function () {
         time.id="time";
         title.id="title";
         icon.id="iconleft";
+        
     
 
         tr2.appendChild(title);

@@ -29,6 +29,7 @@
 }
 .fa-external-link:before {
     float: right;
+    cursor: pointer;
     
 }
 
@@ -97,9 +98,9 @@ span {
 }
 
 /* Handle on hover */
-
 #scrollable::-webkit-scrollbar-thumb:hover {
     background: #555;
+
 }
 
 /* scroll end */
@@ -129,6 +130,7 @@ span {
     width: 100%;
     table-layout: fixed;
 }
+
 
 #table, #customers th {
     border: 5px solid #ddd;
